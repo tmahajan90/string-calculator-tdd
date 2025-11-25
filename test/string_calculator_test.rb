@@ -25,4 +25,8 @@ describe StringCalculator do
   it "handles newlines as delimiters" do
     _(@calculator.add("1\n2,3")).must_equal 6
   end
+
+  it "supports custom delimiters" do
+    _(@calculator.add("//;\n1;2")).must_equal 3
+  end
 end

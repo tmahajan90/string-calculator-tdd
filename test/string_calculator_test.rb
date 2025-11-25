@@ -29,4 +29,15 @@ describe StringCalculator do
   it "supports custom delimiters" do
     _(@calculator.add("//;\n1;2")).must_equal 3
   end
+
+  it "throws exception for negative numbers" do
+    error = _ { @calculator.add("-1") }.must_raise RuntimeError
+    _(error.message).must_match(/negative numbers not allowed/)
+  end
+
+  it "shows all negatives in exception message" do
+    error = _ { @calculator.add("-1,2,-3") }.must_raise RuntimeError
+    _(error.message).must_match(/-1/)
+    _(error.message).must_match(/-3/)
+  end
 end

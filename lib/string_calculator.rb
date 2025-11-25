@@ -4,9 +4,9 @@ class StringCalculator
 
     delimiter = ","
     if numbers.start_with?("//")
-      parts = numbers.split("\n", 2)
-      delimiter = parts[0][2..-1]
-      numbers = parts[1]
+      delimiter_match = numbers.match(/^\/\/(.+)\n/)
+      delimiter = delimiter_match[1]
+      numbers = numbers.split("\n", 2)[1]
     end
 
     numbers = numbers.gsub("\n", delimiter)
